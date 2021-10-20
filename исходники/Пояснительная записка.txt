@@ -1,3 +1,14 @@
 Program.cs - основная программа
 Class1.cs - dll библиотека
-idiot.txt - книга, гитхаб криво ее залил, поэтому в result.txt могут быть ошибки
+
+без потоков
+
+271ms - ConcurrentDictionary
+260ms - обычный словарь
+
+С потоками:
+
+228ms - ConcurrentDictionary
+250ms - locker + обычный словарь
+125ms - ConcurrentDictionary + exe (все остальные тесты были в VS)
+

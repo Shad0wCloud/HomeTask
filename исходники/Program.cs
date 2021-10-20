@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace unique_words
             Test_Class inst = new Test_Class();
             var meth = inst.GetType().GetMethod("UniqueWords", BindingFlags.NonPublic | BindingFlags.Instance);
             
-            var returnValue = (Dictionary<string, int>) meth.Invoke(inst, new object[] { text_by_words });
+            var returnValue = (ConcurrentDictionary<string, int>) meth.Invoke(inst, new object[] { text_by_words });
             List<KeyValuePair<string, int>> convert = returnValue.ToList();
             convert.Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value)); //сортировка по убыванию
             StreamWriter sw = new StreamWriter(path_result, false, System.Text.Encoding.Default);
