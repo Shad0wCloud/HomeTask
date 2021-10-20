@@ -1,43 +1,36 @@
-﻿using System;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using System.Text;
+using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using MyLibrary;
 
-namespace MyLibrary
+namespace unique_words
 {
-    public class Test_Class
+    class Program
     {
-
-        static ConcurrentDictionary<string, int> unique = new ConcurrentDictionary<string, int>();
-
-        public ConcurrentDictionary<string, int>UniqueWords(string[] input)
+        static void Main(string[] args)
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            Parallel.ForEach(input, ForUniqieWords);
-            stopwatch.Stop();
-            Console.WriteLine("Time for compilation= "+stopwatch.ElapsedMilliseconds+"ms");
-            return unique;
-        }
-        static void ForUniqieWords(string str)
-        {
-            str = Regex.Replace(str, "[.?!)(,:…«»;„“№]", "");
-            if (!unique.ContainsKey(str.ToLower()))
+            string path_file = "idiot.txt";
+            string path_result = "result.txt";
+            StreamReader sr = new StreamReader(path_file);
+            string[] text_by_words = sr.ReadToEnd().Split(new char[] { ' ', '—', '–', '-', '\n' }); //разделим строки 
+            sr.Close();
+            text_by_words = text_by_words.Where(x => !string.IsNullOrEmpty(x)).ToArray(); // избавимся от пустых элементов массива
+            //начало reflection
+            MyLibrary.Test_Class inst = new MyLibrary.Test_Class();
+            var returnValue = inst.UniqueWords(text_by_words);
+            List<KeyValuePair<string, int>> convert = returnValue.ToList();
+            convert.Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value)); //сортировка по убыванию
+            StreamWriter sw = new StreamWriter(path_result, false, System.Text.Encoding.Default);
+            foreach (var kv in convert)
             {
-                unique.TryAdd(str.ToLower(), 1); //если еще такого слова нет в словаре, то мы создадим пару ключ + значение = 1
+                sw.WriteLine($"{kv.Key} - {Convert.ToString(kv.Value)}");
             }
-            else
-            {
-                //достаем значение ключа по самому ключу и ув. его на 1
-                int cur_count;
-                unique.TryGetValue(str.ToLower(), out cur_count);
-                cur_count++;
-                unique[str.ToLower()] = cur_count;
-            }
+            sw.Close();
+            Console.WriteLine("Done!");
         }
     }
 }
