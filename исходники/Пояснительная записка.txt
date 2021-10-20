@@ -1,14 +1,20 @@
 Program.cs - основная программа
 Class1.cs - dll библиотека
 
-без потоков
+Приватный метод:
+  без потоков
 
-271ms - ConcurrentDictionary
-260ms - обычный словарь
+  271ms - ConcurrentDictionary
+  260ms - обычный словарь
 
-С потоками:
+  С потоками:
 
-228ms - ConcurrentDictionary
-250ms - locker + обычный словарь
-125ms - ConcurrentDictionary + exe (все остальные тесты были в VS)
+  228ms - ConcurrentDictionary
+  250ms - locker + обычный словарь
+  125ms - ConcurrentDictionary + exe (все остальные тесты были в VS)
+  
+Публичный метод:
 
+  С потоками:
+  287ms - ConcurrentDictionary в VS
+  164ms - ConcurrentDictionary + exe
