@@ -14,7 +14,7 @@ namespace MyLibrary
 
         static ConcurrentDictionary<string, int> unique = new ConcurrentDictionary<string, int>();
 
-        private ConcurrentDictionary<string, int>UniqueWords(string[] input)
+        public ConcurrentDictionary<string, int>UniqueWords(string[] input)
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
