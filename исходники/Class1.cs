@@ -12,15 +12,16 @@ namespace MyLibrary
     public class Test_Class
     {
 
-        static ConcurrentDictionary<string, int> unique = new ConcurrentDictionary<string, int>();
-
-        private ConcurrentDictionary<string, int>UniqueWords(string[] input)
+        static ConcurrentDictionary<string, int> unique = new ConcurrentDictionary<string, int>(101,50); // изменил кол-во бакетов и локеров, подобрал оптимальный вариант.
+                                                                                                         // производительность стала лучше
+        
+        public ConcurrentDictionary<string, int> UniqueWords(string[] input)
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             Parallel.ForEach(input, ForUniqieWords);
             stopwatch.Stop();
-            Console.WriteLine("Time for compilation= "+stopwatch.ElapsedMilliseconds+"ms");
+            Console.WriteLine("Time for compilation= " + stopwatch.ElapsedMilliseconds + "ms");
             return unique;
         }
         static void ForUniqieWords(string str)
