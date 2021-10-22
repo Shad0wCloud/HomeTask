@@ -23,3 +23,8 @@ Class1.cs - dll библиотека
   Без потоков:
   309ms - ConcurrentDictionary в VS
   222ms - ConcurrentDictionary + exe
+
+
+
+
+200ms - после изменения кол-ва bucket-ов и локеров
