@@ -1,0 +1,6 @@
+C:\Users\ShadowCloud\source\repos\WcfService1\WcfService1\bin\WcfService1.dll.config
+C:\Users\ShadowCloud\source\repos\WcfService1\WcfService1\bin\WcfService1.dll
+C:\Users\ShadowCloud\source\repos\WcfService1\WcfService1\bin\WcfService1.pdb
+C:\Users\ShadowCloud\source\repos\WcfService1\WcfService1\obj\Debug\WcfService1.csproj.CoreCompileInputs.cache
+C:\Users\ShadowCloud\source\repos\WcfService1\WcfService1\obj\Debug\WcfService1.dll
+C:\Users\ShadowCloud\source\repos\WcfService1\WcfService1\obj\Debug\WcfService1.pdb
